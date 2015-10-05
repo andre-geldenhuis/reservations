@@ -103,5 +103,6 @@ group :heroku do
   gem 'pg', '~> 0.18.4'
   gem 'unicorn', '~> 5.0.1'
   gem 'rack-timeout', '~> 0.3.2'
+  gem 'aws-sdk', '< 2.0'
   gem 'rails_12factor', '~> 0.0.3'
 end
