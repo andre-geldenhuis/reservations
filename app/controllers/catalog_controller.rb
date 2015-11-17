@@ -47,17 +47,18 @@ class CatalogController < ApplicationController
   # it also updates the item's quantity in the cart, using the given params
   def submit_cart_updates_form # rubocop:disable MethodLength, AbcSize
     flash.clear
-    update_cart
-    # update all the items in the cart
-    params[:quantity].each do |model_id, quantity|
-      quantity = quantity.to_i
-      # make sure the quantity changed before looking for Models
-      if cart.items[model_id] != quantity
-        equipment_model = EquipmentModel.find(model_id)
-        cart.send(:edit_cart_item, equipment_model, quantity)
+    quantity = params[:quantity].to_i
+    id = params[:id].to_i
+    equipment_model = EquipmentModel.find(id)
+    cart.send(:edit_cart_item, equipment_model, quantity)
+    @errors = cart.validate_all #update the errors
+    respond_to do |format|
+      format.html { redirect_to new_reservation_path }
+      format.js do
+        @reservation = Reservation.find(id)
+        render template: 'cart_js/reservation_form'
       end
     end
-    redirect_to new_reservation_path
   end
 
   def search

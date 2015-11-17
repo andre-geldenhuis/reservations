@@ -1,5 +1,7 @@
-<% if @errors.empty? or (can? :override, :reservation_errors) %>
-  <%= render :partial => "new_reservation" %>
-<% else %>
-  <%= render :partial => "new_request" %>
-<% end %>
+<div id='new_res_request'>
+	<% if @errors.empty? or (can? :override, :reservation_errors) %>
+	  <%= render :partial => "new_reservation" %>
+	<% else %>
+	  <%= render :partial => "new_request" %>
+	<% end %>
+</div>

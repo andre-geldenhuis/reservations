@@ -3,7 +3,9 @@
 }
 
 .edit_reservation_form {
-  max-width: 500px;
+  #quantity_col {
+    width: 100px
+  }
 }
 
 .form_errors {

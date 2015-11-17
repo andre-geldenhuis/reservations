@@ -1,58 +1,50 @@
 <% title 'Create Reservation' %>
 
-<% unless @errors.empty? %>
+<div id="content" class="col-md-9">
+  <% unless @errors.empty? %>
+    <p>
+      <h3>
+        <i class="fa fa-exclamation-triangle warning-icon"></i>
+        Please be aware of the following errors:
+      </h3>
+    </p>
+    <div class ="form_errors">
+      <% @errors.each do |msg| %>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
   <p>
-    <h3>
-      <i class="fa fa-exclamation-triangle warning-icon"></i>
-      Please be aware of the following errors:
-    </h3>
+    <h3>Your Reservation:</h3>
   </p>
-  <div class ="form_errors">
-    <% @errors.each do |msg| %>
-      <ul >
-        <li><%= msg %></li>
-      </ul>
+  <%= render partial: 'reservations/edit_reservation_form' %>
+</div>
+<div id="sidebar" class="col-md-3">
+  <div id="sidebarbottom">
+    <div id="cart" class="well">
+      <div id="cartSpinner"></div>
+      <header class="cart-header">
+        <% if cannot? :manage, Reservation %>
+          <h2>My Cart</h2>
+        <% else %>
+          <h2>Cart</h2>
+        <% end %>
+      </header>
+      <%# allow user to set start/end dates %>
+      <%= render partial: 'reservations/cart_dates' %>
+    </div>
+    <%= simple_form_for @reservation do |f| %>
+      <div id="cart" class="well">
+        <div id="cartSpinner"></div>
+        <div class="form-group text<%= ' error' if @notes_required %>">
+          <%= f.label :notes, "#{@errors.blank? ? 'Optional notes' : 'Justification for error override'} for this reservation:" %>
+          <%= f.input_field :notes, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.button :submit, "Finalize Reservation", id: 'finalize_reservation_btn' %>
+      </div>
     <% end %>
   </div>
-<% end %>
-
-
-<p>
-  <h3>Equipment being reserved:</h3>
-</p>
-<p>
-  The following equipment will be reserved by
-  <%= link_to User.find(cart.reserver_id).name, User.find(cart.reserver_id),
-  target: '_blank' %>
-  from
-  <b><%= cart.start_date.to_s(:long) %></b> to
-  <b><%= cart.due_date.to_s(:long) %></b>:
-</p>
-
-
-<ul class="rounded-list">
-  <% cart.items.each do |model_id, quantity| %>
-    <li data-value="<%= quantity %>">
-      <%= link_to EquipmentModel.find(model_id).name, EquipmentModel.find(model_id) %>
-    </li>
-  <% end %>
-</ul>
-
-<button type="button" class="btn btn-warning btn-lg edit_reservation">
-  <%= 'Edit Reservation'.titleize %>
-</button>
-<br>
-<br>
-<div class="new_reservation_info">
-  <%= simple_form_for @reservation do |f| %>
-    <div class="form-group text<%= ' error' if @notes_required %>">
-      <%= f.label :notes, "#{@errors.blank? ? 'Optional notes' : 'Justification for error override'} for this reservation:" %>
-      <%= f.input_field :notes, class: 'form-control', rows: 5 %>
-    </div>
-    <hr>
-    <%= f.button :submit, "Finalize Reservation" %>
-    <%= link_to "Return to Catalog", catalog_path, class: 'btn btn-default' %>
-  <% end %>
 </div>
 <% # edit reservation %>
-<%= render partial: 'reservations/edit_reservation_form' %>

@@ -1,45 +1,35 @@
-<div class="edit_reservation_form well hidden">
-  <div id="cartSpinner"></div>
-  <header class="cart-header">
-     <h2>Reservation Details</h2>
-  </header>
-  <%= form_tag url_for(controller: 'catalog', action: 'submit_cart_updates_form'), class: 'form-vertical', method: :post do %>
-    <div class="cart_reserver">
-      <%= hidden_field_tag 'reserver_id', cart.reserver.id  %>
-    </div>
-    <%= label_tag :start_date, 'Start Date' %>
-    <%= text_field "form", "start_date", class: 'submittable form-control date_start', value: cart.start_date.strftime('%m/%d/%Y') %>
-    <%= hidden_field_tag "cart[start_date_cart]", cart.start_date, id: 'date_start_alt' %>
-    <%= label_tag :due_date, 'Due Date' %>
-    <%= text_field "form", "due_date", class: 'submittable form-control date_end', value: cart.due_date.strftime('%m/%d/%Y'), minDate: cart.start_date.strftime('%m/%d/%Y') %>
-    <%= hidden_field_tag "cart[due_date_cart]", cart.due_date, id: 'date_end_alt' %>
-
+<div class="edit_reservation_form">
     <% # items in reservation %>
-    <h4>Items</h4>
-    <div id="list_items_in_cart">
       <% if cart.items.empty? %>
         <span id="cart_is_empty">(empty)</span>
       <% else %>
-        <table id="table_list_items" class="table table-bordered table-striped table-condensed table-hover">
+        <table id="table_list_items" class="table table-responsive table-striped table-hover">
+          <tr>
+            <thead>
+              <td></td>
+              <td>Items</td>
+              <td id="quantity_col">Quantity</td>
+            </thead>
+          </tr>
           <% cart.items.each do |model_id, quantity| %>
             <% # for each item in the cart, list out the quantity and the name %>
             <tr>
-              <td id="quantity_col">
-                  <%= number_field_tag("quantity[#{model_id}]", quantity, class: 'submittable form-control quantity', min: 0, step: 1, id: "quantity_field_#{model_id}") %>
+              <td>
+                <%= link_to EquipmentModel.find(model_id) do %>
+                  <% image_tag (EquipmentModel.find(model_id).photo.exists? ? EquipmentModel.find(model_id).photo.url(:small) : 'no-image.gif') %>
+                <% end %>
               </td>
               <td>
                 <%= link_to EquipmentModel.find(model_id).name, EquipmentModel.find(model_id) %>
+              </td>
+              <td id="quantity_col">
+                <%= form_tag url_for(controller: 'catalog', action: 'submit_cart_updates_form', id: model_id), remote: true, class: 'form-vertical', id: 'quantity_form', method: :post do %>
+                  <%= number_field_tag("quantity", quantity, class: 'autosubmitme form-control quantity', min: 0, step: 1, id: "quantity_field_#{model_id}") %>
+                <% end %>
               </td>
             </tr>
           <% end %>
         </table>
       <% end %>
-    </div>
     <hr>
-    <input type="submit" value="Update Reservation" class= 'btn btn-success'>
-    <%= link_to "Return to Catalog", catalog_path, class: 'btn btn-default' %>
-    <%= link_to 'Empty cart'.titleize, url_for(controller: 'catalog', action: 'empty_cart'), method: :delete, class: 'btn btn-danger'%>
-  <% end %>
 </div>
-
-
