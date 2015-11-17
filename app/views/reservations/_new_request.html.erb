@@ -11,7 +11,13 @@
     <% end %>
   <% end %>
   <p>
-    <h3>Equipment requested:</h3>
+    <h4>Equipment requested for
+    <%= link_to User.find(cart.reserver_id).name, User.find(cart.reserver_id),
+    target: '_blank' %>
+    from
+    <%= cart.start_date.to_s(:long) %> to
+    <%= cart.due_date.to_s(:long) %>:
+     </h4>
   </p>
   <%= render partial: 'reservations/edit_reservation_form' %>
   <div class="well">

@@ -59,39 +59,15 @@ describe CatalogController, type: :controller do
       @equipment_model = FactoryGirl.create(:equipment_model)
       put :add_to_cart, id: @equipment_model.id
     end
-    it 'should set new dates' do
-      @params = { cart: { start_date_cart: Date.tomorrow.strftime('%Y-%m-%d'),
-                          due_date_cart: (Date.tomorrow + 1)
-                                         .strftime('%Y-%m-%d') },
-                  quantity: { @equipment_model.id => 1 },
-                  reserver_id: @user.id }
-      post :submit_cart_updates_form, @params
-      expect(session[:cart].start_date).to eq(Date.tomorrow)
-      expect(session[:cart].due_date).to eq(Date.tomorrow + 1)
-      is_expected.to redirect_to(new_reservation_path)
-    end
     it 'should adjust item quantity' do
       # check if cart contains an item
       expect session[:cart].items
-      @params = { cart: { start_date_cart: Date.tomorrow.strftime('%Y-%m-%d'),
-                          due_date_cart: (Date.tomorrow + 1)
-                                         .strftime('%Y-%m-%d') },
-                  quantity: { @equipment_model.id => 0 },
+      @params = { id: @equipment_model.id,
+                  quantity: 0,
                   reserver_id: @user.id }
       post :submit_cart_updates_form, @params
       # should remove the item after setting quantity to 0
       expect(session[:cart].items).to be_empty
-      is_expected.to redirect_to(new_reservation_path)
-    end
-    it 'should set flash if invalid date' do
-      @params = { cart: { start_date_cart: Date.tomorrow.strftime('%Y-%m-%d'),
-                          due_date_cart: (Date.tomorrow + 1)
-                                         .strftime('%Y-%m-%d') },
-                  quantity: { @equipment_model.id => 1 },
-                  reserver_id: @user.id }
-      post :submit_cart_updates_form, @params
-      expect(flash[:error]).not_to be_nil
-      expect(session[:cart].start_date).not_to eq(Date.yesterday)
       is_expected.to redirect_to(new_reservation_path)
     end
   end

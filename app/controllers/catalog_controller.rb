@@ -51,7 +51,7 @@ class CatalogController < ApplicationController
     id = params[:id].to_i
     equipment_model = EquipmentModel.find(id)
     cart.send(:edit_cart_item, equipment_model, quantity)
-    @errors = cart.validate_all #update the errors
+    @errors = cart.validate_all # update the errors
     respond_to do |format|
       format.html { redirect_to new_reservation_path }
       format.js do
