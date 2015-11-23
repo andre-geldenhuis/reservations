@@ -42,20 +42,39 @@ class CatalogController < ApplicationController
     end
   end
 
-  # this method is called to update the cart using the edit_reservation_form
-  # it updates the cart using the method in the application controller and
-  # it also updates the item's quantity in the cart, using the given params
-  def submit_cart_updates_form # rubocop:disable MethodLength, AbcSize
+  # this method is called to update item quantities using the edit_reservation_form
+  def submit_cart_updates_form
     flash.clear
     quantity = params[:quantity].to_i
     id = params[:id].to_i
     equipment_model = EquipmentModel.find(id)
     cart.send(:edit_cart_item, equipment_model, quantity)
     @errors = cart.validate_all # update the errors
+    redirect_to catalog_path if cart.items.empty?
     respond_to do |format|
       format.html { redirect_to new_reservation_path }
       format.js do
-        @reservation = Reservation.find(id)
+        # to prepare for making reservation
+        @reservation = Reservation.new(start_date: cart.start_date,
+                                     due_date: cart.due_date,
+                                     reserver_id: cart.reserver_id)
+        render template: 'cart_js/reservation_form'
+      end
+    end
+  end
+
+  # called to update the dates in cart and trigger errors
+  def change_reservation_dates
+    flash.clear
+    update_cart
+    @errors = cart.validate_all # update the errors
+    respond_to do |format|
+      format.html { redirect_to new_reservation_path }
+      format.js do
+        # to prepare for making reservation
+        @reservation = Reservation.new(start_date: cart.start_date,
+                                     due_date: cart.due_date,
+                                     reserver_id: cart.reserver_id)
         render template: 'cart_js/reservation_form'
       end
     end
