@@ -2,6 +2,14 @@
 * This file will be updated whenever a new release is put into production.
 * Any problems should be reported via the "report an issue" link in the footer of the application.
 
+## v6.0.0 - 2015-12-29
+### Fixed
+
+### Changed
+
+### Added
+
+
 ## v5.5.0 - 2015-11-23
 ### Fixed
 * The dropdown menu that appears when clicking on the reserver in a list of reservations is no longer blocked in a short table ([#724](https://github.com/YaleSTC/reservations/issues/724)).
