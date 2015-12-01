@@ -1596,7 +1596,7 @@ describe ReservationsController, type: :controller do
     context 'fails to send email' do
       before do
         allow(UserMailer).to receive_message_chain(
-          'reservation_status_update.deliver').and_return(false)
+          'reservation_status_update.deliver_now').and_return(false)
         get :send_receipt, id: @reservation.id
       end
       it { is_expected.to redirect_to(@reservation) }

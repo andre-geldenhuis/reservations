@@ -91,7 +91,7 @@ describe UsersController, type: :controller do
           post :create, user: @user_attributes
         end
         it 'should save the user' do
-          expect(User.find(assigns(:user))).not_to be_nil
+          expect(User.find(assigns(:user).id)).not_to be_nil
         end
       end
       context 'with incorrect params' do
@@ -112,7 +112,7 @@ describe UsersController, type: :controller do
         end
 
         it 'should save the user' do
-          expect(User.find(assigns(:user))).not_to be_nil
+          expect(User.find(assigns(:user).id)).not_to be_nil
         end
       end
     end
@@ -132,7 +132,7 @@ describe UsersController, type: :controller do
           put :update, user: @new_attributes, id: user
         end
         it 'should update the user' do
-          expect(User.find(user)[:first_name]).to eq('Lolita')
+          expect(User.find(user.id)[:first_name]).to eq('Lolita')
         end
         it { is_expected.to set_flash }
       end
@@ -143,7 +143,7 @@ describe UsersController, type: :controller do
           put :update, user: @new_attributes, id: user
         end
         it 'should update the user' do
-          expect(User.find(user).requirements.count).to eq(1)
+          expect(User.find(user.id).requirements.count).to eq(1)
         end
       end
       context 'without nice params' do
@@ -154,7 +154,7 @@ describe UsersController, type: :controller do
           put :update, user: @bad_attributes, id: user
         end
         it 'should not save' do
-          expect(User.find(user)[:first_name]).not_to eq('Lolita')
+          expect(User.find(user.id)[:first_name]).not_to eq('Lolita')
         end
       end
     end

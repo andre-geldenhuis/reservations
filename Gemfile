@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2' # Version in .ruby-version must match
+ruby '2.2.3' # Version in .ruby-version must match
 
 # standard gems
-gem 'rails', '~> 4.1.9'
-gem 'mysql2', '~> 0.3.18'
+gem 'rails', '~> 4.2.5'
+gem 'mysql2', '~> 0.4.2'
 gem 'rake', '~> 10.4.2'
 gem 'rdoc', '~> 4.2.0'
 
@@ -12,7 +12,7 @@ gem 'rdoc', '~> 4.2.0'
 gem 'dotenv-rails', '~> 2.0.2', :require => 'dotenv/rails-now'
 
 # authentication / authorization
-gem 'devise', '~> 3.4.1'
+gem 'devise', '~> 3.5.2'
 gem 'devise_cas_authenticatable', '~> 1.3.7' # if ENV['CAS_AUTH']
 gem 'cancancan', '~> 1.10.1'
 
