@@ -478,9 +478,10 @@ describe 'Reservations', type: :feature do
         fill_in "quantity_field_#{@eq_model.id}",
                 with: 0
         quantity_forms[0].submit_form!
+        quantity_forms = page.all('#quantity_form') # gets an updated page
         fill_in "quantity_field_#{@eq_model2.id}",
                 with: 0
-        find('#quantity_form').submit_form!
+        quantity_forms[0].submit_form!
         expect(page).to have_content 'Catalog' # should redirect to catalog
         expect(page).not_to have_content 'Confirm Reservation'
       end
