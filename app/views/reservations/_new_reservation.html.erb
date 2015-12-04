@@ -39,7 +39,7 @@
         <% end %>
       </header>
       <%# allow user to set start/end dates %>
-      <%= form_tag url_for(action: 'change_reservation_dates', controller: "catalog"), remote: true, class: 'form-vertical', id: 'cart_form', method: :put do %>
+      <%= form_tag url_for(action: 'change_reservation_dates', controller: "catalog"), remote: true, class: 'form-vertical', id: 'dates_form', method: :put do %>
         <%= render partial: 'reservations/cart_dates' %>
       <% end %>
     </div>

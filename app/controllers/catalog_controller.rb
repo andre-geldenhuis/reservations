@@ -42,7 +42,8 @@ class CatalogController < ApplicationController
     end
   end
 
-  # this method is called to update item quantities using the edit_reservation_form
+  # this method updates item quantities using the edit_reservation_form
+  # rubocop:disable AbcSize
   def submit_cart_updates_form
     flash.clear
     quantity = params[:quantity].to_i
@@ -50,18 +51,23 @@ class CatalogController < ApplicationController
     equipment_model = EquipmentModel.find(id)
     cart.send(:edit_cart_item, equipment_model, quantity)
     @errors = cart.validate_all # update the errors
-    redirect_to catalog_path if cart.items.empty?
     respond_to do |format|
       format.html { redirect_to new_reservation_path }
       format.js do
-        # to prepare for making reservation
-        @reservation = Reservation.new(start_date: cart.start_date,
-                                     due_date: cart.due_date,
-                                     reserver_id: cart.reserver_id)
-        render template: 'cart_js/reservation_form'
+        if cart.items.empty?
+          # refreshes page to redirect to catalog
+          render inline: 'location.reload();'
+        else
+          # to prepare for making reservation
+          @reservation = Reservation.new(start_date: cart.start_date,
+                                         due_date: cart.due_date,
+                                         reserver_id: cart.reserver_id)
+          render template: 'cart_js/reservation_form'
+        end
       end
     end
   end
+  # rubocop:enable AbcSize
 
   # called to update the dates in cart and trigger errors
   def change_reservation_dates
@@ -73,8 +79,8 @@ class CatalogController < ApplicationController
       format.js do
         # to prepare for making reservation
         @reservation = Reservation.new(start_date: cart.start_date,
-                                     due_date: cart.due_date,
-                                     reserver_id: cart.reserver_id)
+                                       due_date: cart.due_date,
+                                       reserver_id: cart.reserver_id)
         render template: 'cart_js/reservation_form'
       end
     end
@@ -115,8 +121,8 @@ class CatalogController < ApplicationController
   # cart (or displays the appropriate errors)
   def change_cart(action, item, quantity = nil)
     cart.send(action, item, quantity)
-    errors = cart.validate_all
-    flash[:error] = errors.join("\n")
+    @errors = cart.validate_all
+    flash[:error] = @errors.join("\n")
     flash[:notice] = 'Cart updated.'
 
     respond_to do |format|

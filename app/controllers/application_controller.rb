@@ -170,9 +170,9 @@ class ApplicationController < ActionController::Base
     notices += "\n" unless notices.blank?
 
     # validate
-    errors = cart.validate_all
+    @errors = cart.validate_all
     # don't over-write flash if invalid date was set above
-    flash[:error] ||= notices + "\n" + errors.join("\n")
+    flash[:error] ||= notices + "\n" + @errors.join("\n")
     flash[:notice] = 'Cart updated.'
 
     # reload appropriate divs / exit

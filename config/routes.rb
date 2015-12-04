@@ -126,7 +126,7 @@ Reservations::Application.routes.draw do
   post '/edit_reservation_form' => 'catalog#submit_cart_updates_form',
        :as => :submit_cart_updates_form
   put '/change_reservation_dates' => 'catalog#change_reservation_dates',
-       :as => :change_reservation_dates
+      :as => :change_reservation_dates
 
   get '/reports/index' => 'reports#index', :as => :reports
   get '/reports/subreport/:class/:id' => 'reports#subreport',

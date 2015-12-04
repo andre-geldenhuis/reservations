@@ -2,6 +2,10 @@ resume_cart();
 
 <% if @errors.empty? or (can? :override, :reservation_errors) %>
   $('#new_res_request').html('<%= escape_javascript(render :partial => '/reservations/new_reservation') %>');
+  $('.page-header').html('<h1>Confirm Reservation</h1>');
 <% else %>
   $('#new_res_request').html('<%= escape_javascript(render :partial => '/reservations/new_request' ) %>');
+  $('.page-header').html('<h1>Confirm Reservation Request</h1>');
 <% end %>
+
+load_datepicker();

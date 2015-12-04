@@ -54,12 +54,23 @@ describe CatalogController, type: :controller do
       end
     end
   end
-  describe 'POST submit_cart_updates_form' do
+  describe 'POST submit_cart_updates_form on item' do
     before(:each) do
       @equipment_model = FactoryGirl.create(:equipment_model)
       put :add_to_cart, id: @equipment_model.id
     end
     it 'should adjust item quantity' do
+      # check if cart contains an item
+      expect session[:cart].items
+      @params = { id: @equipment_model.id,
+                  quantity: 2,
+                  reserver_id: @user.id }
+      post :submit_cart_updates_form, @params
+      expect(session[:cart].items[@equipment_model.id]).to eq(2)
+      expect(assigns(:errors)).to eq session[:cart].validate_all
+      is_expected.to redirect_to(new_reservation_path)
+    end
+    it 'should remove item when quantity is 0' do
       # check if cart contains an item
       expect session[:cart].items
       @params = { id: @equipment_model.id,
@@ -69,6 +80,22 @@ describe CatalogController, type: :controller do
       # should remove the item after setting quantity to 0
       expect(session[:cart].items).to be_empty
       is_expected.to redirect_to(new_reservation_path)
+    end
+  end
+
+  describe 'PUT changing dates on confirm reservation page' do
+    before(:each) do
+      @equipment_model = FactoryGirl.create(:equipment_model)
+      put :add_to_cart, id: @equipment_model.id
+    end
+    it 'should set new dates' do
+      @params = { cart: { start_date_cart: Date.tomorrow.strftime('%Y-%m-%d'),
+                          due_date_cart:
+                            (Date.tomorrow + 1).strftime('%Y-%m-%d') },
+                  reserver_id: @user.id }
+      post :change_reservation_dates, @params
+      expect(session[:cart].start_date).to eq(Date.tomorrow)
+      expect(session[:cart].due_date).to eq(Date.tomorrow + 1)
     end
   end
 
