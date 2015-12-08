@@ -127,7 +127,8 @@ describe UserMailer, type: :mailer do
       @res.update_attributes(
         FactoryGirl.attributes_for(:valid_reservation))
       expect(@res.checked_out).to be_nil
-      @mail = UserMailer.reservation_status_update(@res, 'checked out').deliver_now
+      @mail =
+        UserMailer.reservation_status_update(@res, 'checked out').deliver_now
       expect(@mail).to be_nil
     end
 
@@ -135,14 +136,16 @@ describe UserMailer, type: :mailer do
       @res.update_attributes(
         FactoryGirl.attributes_for(:checked_out_reservation,
                                    due_date: Time.zone.today))
-      @mail = UserMailer.reservation_status_update(@res, 'checked out').deliver_now
+      @mail =
+        UserMailer.reservation_status_update(@res, 'checked out').deliver_now
       expect(@mail.subject).to eq(
         "[Reservations] #{@res.equipment_model.name} Checked Out")
     end
 
     it 'sends check-out receipts for overdue reservations' do
       @res.update_attributes(FactoryGirl.attributes_for(:overdue_reservation))
-      @mail = UserMailer.reservation_status_update(@res, 'checked out').deliver_now
+      @mail =
+        UserMailer.reservation_status_update(@res, 'checked out').deliver_now
       expect(@mail.subject).to eq(
         "[Reservations] #{@res.equipment_model.name} Checked Out")
     end
