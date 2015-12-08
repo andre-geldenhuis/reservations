@@ -39,7 +39,7 @@ gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'rails4-autocomplete', '~> 1.1.1'
 gem 'select2-rails', '~> 3.5.9.3'
 gem 'kaminari', '~> 0.16.3'
-gem 'draper', '~> 1.4.0'
+gem 'draper', '~> 2.1.0'
 gem 'inline_svg'
 
 # forms / formatting
