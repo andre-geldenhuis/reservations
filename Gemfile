@@ -13,7 +13,7 @@ gem 'dotenv-rails', '~> 2.0.2', :require => 'dotenv/rails-now'
 
 # authentication / authorization
 gem 'devise', '~> 3.5.2'
-gem 'devise_cas_authenticatable', '~> 1.3.7' # if ENV['CAS_AUTH']
+gem 'devise_cas_authenticatable', '~> 1.6.0', require: !!ENV['CAS_AUTH']
 gem 'cancancan', '~> 1.13.1'
 
 # scheduling
