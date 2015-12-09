@@ -68,7 +68,7 @@ group :development, :test do
   gem 'capistrano-bundler', '~> 1.1.4', require: false
   gem 'capistrano-rails', '~> 1.1.2', require: false
   gem 'capistrano-rvm', '~> 0.1.2', require: false
-  gem 'highline', '~> 1.7.2', require: false
+  gem 'highline', '~> 1.7.8', require: false
   gem 'awesome_print', '~> 1.6.1'
   gem 'codeclimate-test-reporter', '~> 0.4.8'
   gem 'database_cleaner', '~> 1.5.1'
