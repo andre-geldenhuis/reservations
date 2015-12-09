@@ -30,7 +30,7 @@ gem 'paperclip', '~> 4.2.1'
 
 # soft deletion
 gem 'permanent_records', '~> 3.2.0'
-gem 'nilify_blanks', '~> 1.2.0'
+gem 'nilify_blanks', '~> 1.2.1'
 
 # ui
 gem 'jquery-rails', '~> 4.0.5'
