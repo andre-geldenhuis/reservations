@@ -95,7 +95,7 @@ group :development do
 end
 
 group :production do
-  gem 'therubyracer', '~> 0.12.1', require: 'v8'
+  gem 'therubyracer', '~> 0.12.2', require: 'v8'
   gem 'party_foul', '~> 1.5.5'
 end
 
