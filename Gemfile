@@ -90,7 +90,7 @@ gem 'font-awesome-rails', '~> 4.5.0'
 
 group :development do
   gem 'thin', '~> 1.6.3'
-  gem 'rack-mini-profiler', '~> 0.9.2'
+  gem 'rack-mini-profiler', '~> 0.9.8'
   gem 'bullet', '~> 4.14.10'
 end
 
@@ -102,6 +102,6 @@ end
 group :heroku do
   gem 'pg', '~> 0.18.4'
   gem 'unicorn', '~> 4.8.3'
-  gem 'rack-timeout', '~> 0.2.0'
+  gem 'rack-timeout', '~> 0.3.2'
   gem 'rails_12factor', '~> 0.0.3'
 end
