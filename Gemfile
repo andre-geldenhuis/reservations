@@ -84,7 +84,7 @@ end
 # assets
 gem 'sass-rails', '~> 5.0.4'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'uglifier', '~> 2.7.0'
+gem 'uglifier', '~> 2.7.2'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-rails', '~> 4.5.0'
 

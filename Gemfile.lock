@@ -415,7 +415,7 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicorn (4.8.3)
@@ -497,7 +497,7 @@ DEPENDENCIES
   spring-commands-rspec (~> 1.0.4)
   therubyracer (~> 0.12.2)
   thin (~> 1.6.3)
-  uglifier (~> 2.7.0)
+  uglifier (~> 2.7.2)
   unicorn (~> 4.8.3)
   whenever (~> 0.9.4)
 
