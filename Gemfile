@@ -77,7 +77,7 @@ end
 
 group :development, :test, :heroku do
   # seed script gems
-  gem 'ffaker', '~> 1.32.1', require: false
+  gem 'ffaker', '~> 2.1.0', require: false
   gem 'ruby-progressbar', '~> 1.7.1', require: false
 end
 

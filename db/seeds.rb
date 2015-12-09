@@ -144,12 +144,12 @@ end
 
 def generate_user # rubocop:disable AbcSize
   User.create do |u|
-    u.first_name = Faker::Name.first_name
-    u.last_name = Faker::Name.last_name
-    u.nickname = Faker::Name.first_name
-    u.phone = Faker::PhoneNumber.short_phone_number
-    u.email = Faker::Internet.email
-    u.cas_login = Faker::Internet.user_name if ENV['CAS_AUTH']
+    u.first_name = FFaker::Name.first_name
+    u.last_name = FFaker::Name.last_name
+    u.nickname = FFaker::Name.first_name
+    u.phone = FFaker::PhoneNumber.short_phone_number
+    u.email = FFaker::Internet.email
+    u.cas_login = FFaker::Internet.user_name if ENV['CAS_AUTH']
     u.affiliation = 'YC ' + %w(BK BR CC DC ES JE MC PC SM SY TC TD).sample +
       ' ' + rand(2012..2015).to_s
     u.role = %w(normal checkout).sample
@@ -159,12 +159,12 @@ end
 
 def generate_category
   Category.create! do |c|
-    category_name = Faker::Product.brand
+    category_name = FFaker::Product.brand
     category_names = Category.all.to_a.map!(&:name)
 
     # Verify uniqueness of category name
     while category_names.include?(category_name)
-      category_name = Faker::Product.brand
+      category_name = FFaker::Product.brand
     end
 
     c.name = category_name
@@ -181,8 +181,8 @@ end
 # rubocop:disable AbcSize
 def generate_em
   EquipmentModel.create! do |em|
-    em.name = Faker::Product.product + ' ' + rand(1..9001).to_s
-    em.description = Faker::HipsterIpsum.paragraph(16)
+    em.name = FFaker::Product.product + ' ' + rand(1..9001).to_s
+    em.description = FFaker::HipsterIpsum.paragraph(16)
     em.late_fee = rand(50.00..1000.00).round(2).to_d
     em.replacement_fee = rand(50.00..1000.00).round(2).to_d
     em.category = Category.all.sample
@@ -211,23 +211,23 @@ end
 def generate_req
   Requirement.create! do |req|
     req.equipment_models = EquipmentModel.all.sample(rand(1..3))
-    req.contact_name = Faker::Name.name
-    req.contact_info = Faker::PhoneNumber.short_phone_number
-    req.notes = Faker::HipsterIpsum.paragraph(4)
-    req.description = Faker::HipsterIpsum.sentence
+    req.contact_name = FFaker::Name.name
+    req.contact_info = FFaker::PhoneNumber.short_phone_number
+    req.notes = FFaker::HipsterIpsum.paragraph(4)
+    req.description = FFaker::HipsterIpsum.sentence
   end
 end
 
 def generate_checkin
   CheckinProcedure.create! do |chi|
-    chi.step = Faker::HipsterIpsum.sentence
+    chi.step = FFaker::HipsterIpsum.sentence
     chi.equipment_model_id = EquipmentModel.all.sample.id
   end
 end
 
 def generate_checkout
   CheckoutProcedure.create! do |chi|
-    chi.step = Faker::HipsterIpsum.sentence
+    chi.step = FFaker::HipsterIpsum.sentence
     chi.equipment_model_id = EquipmentModel.all.sample.id
   end
 end
@@ -237,7 +237,7 @@ def generate_blackout
     blk.start_date = time_rand(Time.now + 1.year)
     blk.end_date = time_rand(blk.start_date.to_time,
                              blk.start_date.next_week.to_time)
-    blk.notice = Faker::HipsterIpsum.paragraph(2)
+    blk.notice = FFaker::HipsterIpsum.paragraph(2)
     blk.created_by = User.first.id
     blk.blackout_type = %w(soft hard).sample
   end
@@ -297,7 +297,7 @@ def generate_reservation
     res.due_date = time_rand(res.start_date.to_datetime,
                              res.start_date.to_datetime.next_week,
                              checkout_length.days).to_date
-    res.notes = Faker::HipsterIpsum.paragraph(8)
+    res.notes = FFaker::HipsterIpsum.paragraph(8)
     res.notes_unsent = [true, false].sample
     if rand < PAST_CHANCE
       throw_into_past res
