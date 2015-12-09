@@ -56,7 +56,7 @@ group :development, :test do
   gem 'letter_opener', '~> 1.4.1'
   gem 'letter_opener_web', '~> 1.3.0'
   gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'rspec-rails', '~> 3.2.0'
+  gem 'rspec-rails', '~> 3.4.0'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'capybara', '~> 2.5.0'
   gem 'guard-rspec', '~> 4.6.4'

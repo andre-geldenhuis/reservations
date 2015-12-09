@@ -501,19 +501,19 @@ describe Reservation, type: :model do
     it 'the status should not be able to be changed if denied' do
       reservation.update_attributes(status: 'denied')
       reservation.status = 'reserved'
-      expect { reservation.save! }.to raise_error
+      expect { reservation.save! }.to raise_error ActiveRecord::RecordInvalid
     end
     it 'the status should not be able to be changed if missed' do
       reservation.update_attributes(
         FactoryGirl.attributes_for(:missed_reservation))
       reservation.status = 'reserved'
-      expect { reservation.save! }.to raise_error
+      expect { reservation.save! }.to raise_error ActiveRecord::RecordInvalid
     end
     it 'the status should not be able to be changed if returned' do
       reservation.update_attributes(
         FactoryGirl.attributes_for(:checked_in_reservation))
       reservation.status = 'reserved'
-      expect { reservation.save! }.to raise_error
+      expect { reservation.save! }.to raise_error ActiveRecord::RecordInvalid
     end
   end
 

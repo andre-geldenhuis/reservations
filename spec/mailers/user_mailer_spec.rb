@@ -59,7 +59,7 @@ describe UserMailer, type: :mailer do
 
     it "doesn't log if the env is not set" do
       expect(ENV['LOG_EMAILS']).to be_nil
-      expect(Rails.logger).to receive(:info).exactly(0).times
+      expect(Rails.logger).to receive(:info).with(/Sent/).exactly(0).times
       @mail = UserMailer.reservation_status_update(@res).deliver_now
     end
 
