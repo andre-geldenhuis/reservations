@@ -26,7 +26,7 @@ gem 'rails_admin', '~> 0.6.6'
 gem 'net-ldap', '~> 0.12.1'
 
 # attachments
-gem 'paperclip', '~> 4.2.1'
+gem 'paperclip', '~> 4.3.2'
 
 # soft deletion
 gem 'permanent_records', '~> 3.2.0'
