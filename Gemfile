@@ -57,7 +57,7 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.3.0'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'rspec-rails', '~> 3.4.0'
-  gem 'shoulda-matchers', '~> 2.8.0'
+  gem 'shoulda-matchers', '~> 3.0.1'
   gem 'capybara', '~> 2.5.0'
   gem 'guard-rspec', '~> 4.6.4'
   gem 'spring', '~> 1.3.2'
@@ -78,7 +78,7 @@ end
 group :development, :test, :heroku do
   # seed script gems
   gem 'ffaker', '~> 2.1.0', require: false
-  gem 'ruby-progressbar', '~> 1.7.1', require: false
+  gem 'ruby-progressbar', '~> 1.7.5', require: false
 end
 
 # assets
