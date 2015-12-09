@@ -23,7 +23,7 @@ gem 'whenever', '~> 0.9.4'
 gem 'rails_admin', '~> 0.6.6'
 
 # ldap integration
-gem 'net-ldap', '~> 0.11'
+gem 'net-ldap', '~> 0.12.1'
 
 # attachments
 gem 'paperclip', '~> 4.2.1'
