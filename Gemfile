@@ -48,9 +48,9 @@ gem 'cocoon', '~> 1.2.6'
 gem 'redcarpet', '~> 3.3.3'
 
 group :development, :test do
-  gem 'pry', '~> 0.10.1'
-  gem 'pry-rails', '~> 0.3.3'
-  gem 'pry-byebug', '~> 3.0.1'
+  gem 'pry', '~> 0.10.3'
+  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry-byebug', '~> 3.3.0'
   gem 'pry-stack_explorer', '~> 0.4.9.2'
   gem 'pry-remote', '~> 0.1.8'
   gem 'letter_opener', '~> 1.4.1'
