@@ -60,7 +60,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.0.1'
   gem 'capybara', '~> 2.5.0'
   gem 'guard-rspec', '~> 4.6.4'
-  gem 'spring', '~> 1.3.2'
+  gem 'spring', '~> 1.4.4'
   gem 'spring-commands-rspec', '~> 1.0.4'
   gem 'fuubar', '~> 2.0.0'
   gem 'guard-livereload', '~> 2.5.1'
