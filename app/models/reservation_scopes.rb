@@ -42,9 +42,11 @@ module ReservationScopes
       scope :checkoutable, lambda {
         where('start_date <= ?', Time.zone.today).reserved
       }
+      # rubocop:disable Date
       scope :future, lambda {
         where('start_date > ?', Time.zone.today.to_time).reserved
       }
+      # rubcop:enable Date
       scope :starts_on_days, lambda { |start_date, end_date|
         where(start_date: start_date..end_date)
       }

@@ -1341,7 +1341,7 @@ describe ReservationsController, type: :controller do
       before do
         request.env['HTTP_REFERER'] = 'where_i_came_from'
         sign_in @admin
-        put :checkin,  user_id: @user.id, reservations: {}
+        put :checkin, user_id: @user.id, reservations: {}
       end
       it { is_expected.to set_flash }
       it { expect(response).to redirect_to 'where_i_came_from' }

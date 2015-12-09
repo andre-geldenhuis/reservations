@@ -343,7 +343,7 @@ class ReservationsController < ApplicationController
       if r.checked_in
         flash[:error] = 'One of the items you tried to check in has already '\
           'been checked in.'
-        redirect_to(:back) && return
+        redirect_to(:back) && return # rubocop:disable NonLocalExitFromIterator
       end
 
       checked_in_reservations << r.checkin(current_user,

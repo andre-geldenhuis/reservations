@@ -72,7 +72,7 @@ group :development, :test do
   gem 'awesome_print', '~> 1.6.1'
   gem 'codeclimate-test-reporter', '~> 0.4.8'
   gem 'database_cleaner', '~> 1.5.1'
-  gem 'rubocop', '~> 0.29.1', require: false
+  gem 'rubocop', '~> 0.35.1', require: false
 end
 
 group :development, :test, :heroku do

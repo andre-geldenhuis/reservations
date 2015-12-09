@@ -54,9 +54,9 @@ FactoryGirl.define do
     end
 
     trait :returned do
-      start_date { Time.zone.today - 1.days }
+      start_date { Time.zone.today - 1.day }
       due_date { Time.zone.today }
-      checked_out { Time.zone.today - 1.days }
+      checked_out { Time.zone.today - 1.day }
       checked_in { Time.zone.today }
       status { 'returned' }
       checkin_handler
@@ -68,7 +68,7 @@ FactoryGirl.define do
 
     trait :overdue do
       start_date { Time.zone.today - 2.days }
-      due_date { Time.zone.today - 1.days }
+      due_date { Time.zone.today - 1.day }
       checked_out { Time.zone.today - 2.days }
       overdue { true }
       after(:build) do |res|

@@ -37,7 +37,7 @@ describe Reservation, type: :model do
     context 'with a blackout date overlapping with the max renewal length' do
       it 'should set the correct renewal length' do
         FactoryGirl.create(:blackout,
-                           start_date: reservation.due_date + 2.day,
+                           start_date: reservation.due_date + 2.days,
                            end_date: reservation.due_date + reservation
                            .equipment_model.max_renewal_length.days + 1.day)
         expect(reservation.find_renewal_date).to\
