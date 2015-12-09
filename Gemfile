@@ -71,7 +71,7 @@ group :development, :test do
   gem 'highline', '~> 1.7.2', require: false
   gem 'awesome_print', '~> 1.6.1'
   gem 'codeclimate-test-reporter', '~> 0.4.8'
-  gem 'database_cleaner', '~> 1.4.0'
+  gem 'database_cleaner', '~> 1.5.1'
   gem 'rubocop', '~> 0.29.1', require: false
 end
 
