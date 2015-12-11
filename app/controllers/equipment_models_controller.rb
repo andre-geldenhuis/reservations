@@ -9,6 +9,7 @@ class EquipmentModelsController < ApplicationController
                 only: [:show, :edit, :update, :destroy, :deactivate]
   before_action :set_category_if_possible, only: [:index, :new]
 
+  include Calendarable
   include ActivationHelper
 
   # --------- before filter methods --------- #
@@ -183,5 +184,14 @@ class EquipmentModelsController < ApplicationController
 
   def type_from_file_command(file)
     Paperclip::FileCommandContentTypeDetector.new(file).detect
+  end
+
+  def generate_calendar_reservations
+    # for the moment, find reservations from the year beginning 6 months ago
+    start = Time.zone.today - 6.months
+    finish = Time.zone.today + 6.months
+
+    Reservation.for_eq_model(@equipment_model)
+      .reserved_in_date_range(start, finish)
   end
 end

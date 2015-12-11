@@ -1,20 +1,16 @@
 require 'spec_helper'
 
 RSpec.feature 'Equipment model calendar view' do
-  scenario 'as admin or superuser' do
+  context 'as admin or superuser' do
     before(:each) { sign_in_as_user(@admin) }
     after(:each) { sign_out }
 
     it 'shows a calendar view of reservations' do
-      day0 = Time.zone.today.beginning_of_month # to ensure it's in this month
-      res1 = create :reservation, equipment_model: @eq_model,
-                                  start_date: day0,
-                                  due_date: day0 + 1.day
+      create_res_in_current_month(2)
 
-      visit equipment_model_calendar_path(@eq_model)
+      visit calendar_equipment_model_path(@eq_model)
 
-      # test for existence of calendar view (CSS selector as well?)
-      expect(page).to have_link "Res. ##{res1.id}"
+      expect(page).to have_css '[data-role=cal-item]', count: 2
     end
 
     xit 'shows reservations in the current month' do
@@ -24,30 +20,41 @@ RSpec.feature 'Equipment model calendar view' do
     end
   end
 
-  scenario 'as non-admin' do
-    shared_example 'redirects to equipment model page' do
+  context 'as non-admin' do
+    shared_examples 'redirects to equipment model page' do
       # stuff
     end
 
-    it 'as checkout person' do
-      sign_in_as_user(@checkout)
-      # visit route
+    context 'as checkout person' do
+      before(:each) { sign_in_as_user(@checkout_person) }
+      after(:each) { sign_out }
+
       it_behaves_like 'redirects to equipment model page'
-      sign_out
     end
 
-    it 'as patron' do
-      sign_in_as_user(@patron)
-      # visit route
+    context 'as patron' do
+      before(:each) { sign_in_as_user(@user) }
+      after(:each) { sign_out }
+
       it_behaves_like 'redirects to equipment model page'
-      sign_out
     end
 
-    it 'as banned user' do
-      sign_in_as_user(@banned)
-      # visit route
+    context 'as banned user' do
+      before(:each) { sign_in_as_user(@banned) }
+      after(:each) { sign_out }
+
       it_behaves_like 'redirects to equipment model page'
-      sign_out
+    end
+  end
+
+  def create_res_in_current_month(count = 1)
+    fail InvalidParameterError if count > 28
+    day0 = Time.zone.today.beginning_of_month # to ensure it's in this month
+    (1..count).each do |i|
+      res1 = build :reservation, equipment_model: @eq_model,
+                                 start_date: day0 + (i - 1).days,
+                                 due_date: day0 + i.days
+      res1.save(validate: false)
     end
   end
 end
