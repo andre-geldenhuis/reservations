@@ -4,6 +4,7 @@
 
 ## v6.0.0 - 2015-12-29
 ### Fixed
+* Admins can again manually create new users when CAS authentication is enabled ([#1370](https://github.com/YaleSTC/reservations/issues/1370)).
 
 ### Changed
 
