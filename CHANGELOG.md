@@ -4,11 +4,18 @@
 
 ## v6.0.0 - 2015-12-29
 ### Fixed
+* The equipment model availability numbers no longer overflow when they are two digits long ([#1363](https://github.com/YaleSTC/reservations/issues/1363)).
 * Admins can again manually create new users when CAS authentication is enabled ([#1370](https://github.com/YaleSTC/reservations/issues/1370)).
+* Fixed missing affiliation LDAP lookup ([#1375](https://github.com/YaleSTC/reservations/issues/1375)).
+* Fixed issue with missing datepicker assets / update jQuery UI + Bootstrap theme ([#1377](https://github.com/YaleSTC/reservations/issues/1377)).
+* Fixed broken link to pending reservations on equipment model page ([#1379](https://github.com/YaleSTC/reservations/issues/1379)).
+* Fixed broken "Total Stock" count on the equipment model table ([#1380](https://github.com/YaleSTC/reservations/issues/1380)).
+* Fixed migration that was leading to reservations being incorrectly marked as overdue ([#1381](https://github.com/YaleSTC/reservations/issues/1381)).
 
 ### Changed
 
 ### Added
+* Made archived reservations accessible through the reservations index page ([#1383](https://github.com/YaleSTC/reservations/issues/1383)).
 
 
 ## v5.5.0 - 2015-11-23
