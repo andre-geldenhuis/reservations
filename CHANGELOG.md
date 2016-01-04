@@ -2,7 +2,7 @@
 * This file will be updated whenever a new release is put into production.
 * Any problems should be reported via the "report an issue" link in the footer of the application.
 
-## v6.0.0 - 2015-12-29
+## v6.0.0 - 2016-02-01
 ### Fixed
 * The equipment model availability numbers no longer overflow when they are two digits long ([#1363](https://github.com/YaleSTC/reservations/issues/1363)).
 * Admins can again manually create new users when CAS authentication is enabled ([#1370](https://github.com/YaleSTC/reservations/issues/1370)).
@@ -13,6 +13,7 @@
 * Fixed migration that was leading to reservations being incorrectly marked as overdue ([#1381](https://github.com/YaleSTC/reservations/issues/1381)).
 
 ### Changed
+* Refactored and improved the md_link method for resources and standardized its usage in notes / logs ([#1382](https://github.com/YaleSTC/reservations/issues/1382)).
 
 ### Added
 * Made archived reservations accessible through the reservations index page ([#1383](https://github.com/YaleSTC/reservations/issues/1383)).
