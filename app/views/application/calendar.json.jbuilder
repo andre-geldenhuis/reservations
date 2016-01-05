@@ -3,6 +3,7 @@ overdue_color = '#d9534f'
 reserved_color = '#337ab7'
 checked_out_color = '#5bc0de'
 returned_color = '#5cb85c'
+missed_color = '#888'
 
 # generate json
 json.array!(@calendar_res) do |res|
@@ -28,6 +29,6 @@ json.array!(@calendar_res) do |res|
   end
   json.allDay true
   json.url reservation_url(res, format: :html)
-  json.hasItem res.equipment_item_id.present?
+  json.hasItem !res.equipment_item.nil?
   json.location res.equipment_item.name unless res.equipment_item.nil?
 end
