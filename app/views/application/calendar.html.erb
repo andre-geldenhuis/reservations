@@ -1,0 +1,2 @@
+<% title "#{@resource.name} Calendar" %>
+<div class="res-cal" data-src="<%= send(@src_path, @resource, format: :json) %>"></div>

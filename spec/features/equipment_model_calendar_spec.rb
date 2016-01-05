@@ -5,7 +5,7 @@ RSpec.feature 'Equipment model calendar view' do
     before(:each) { sign_in_as_user(@admin) }
     after(:each) { sign_out }
 
-    it 'shows a calendar view of reservations' do
+    it 'shows a calendar view of reservations', :js do
       create_res_in_current_month(2)
 
       visit calendar_equipment_model_path(@eq_model)
@@ -51,9 +51,11 @@ RSpec.feature 'Equipment model calendar view' do
     fail InvalidParameterError if count > 28
     day0 = Time.zone.today.beginning_of_month # to ensure it's in this month
     (1..count).each do |i|
+      # make sure it's a 1-day reservation so there's only a single cell
+      # (avoid weekend overlaps)
       res1 = build :reservation, equipment_model: @eq_model,
                                  start_date: day0 + (i - 1).days,
-                                 due_date: day0 + i.days
+                                 due_date: day0 + (i - 1).days
       res1.save(validate: false)
     end
   end

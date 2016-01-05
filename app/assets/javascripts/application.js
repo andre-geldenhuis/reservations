@@ -21,6 +21,8 @@
 //= require select2
 //= require jquery.sticky.js
 //= require jquery.dotdotdot.js
+//= require moment
+//= require fullcalendar
 //= require_tree
 //= require_self
 
@@ -86,6 +88,13 @@ $(document).ready(function() {
     "columnDefs": [
       { "orderable": false, "targets": [ "no_sort" ] }
     ]
+  });
+
+  $('.res-cal').fullCalendar({
+    events: $('.res-cal').attr('data-src'),
+    eventRender: function(event, element) {
+      element.attr('data-role', 'cal-item')
+    }
   });
 
   // ### REPORTS JS ### //

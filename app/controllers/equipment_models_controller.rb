@@ -194,4 +194,8 @@ class EquipmentModelsController < ApplicationController
     Reservation.for_eq_model(@equipment_model)
       .reserved_in_date_range(start, finish)
   end
+
+  def generate_calendar_resource
+    @equipment_model
+  end
 end
