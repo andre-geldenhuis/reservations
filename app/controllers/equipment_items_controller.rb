@@ -117,7 +117,7 @@ class EquipmentItemsController < ApplicationController
     start = Time.zone.today - 6.months
     finish = Time.zone.today + 6.months
 
-    @equipment_item.reservations.finalized
+    @equipment_item.reservations.finalized.includes(:equipment_item)
       .where('start_date <= ? and due_date >= ?', finish, start)
       # .reserved_in_date_range(start, finish)
   end
