@@ -7,6 +7,7 @@ class EquipmentItemsController < ApplicationController
   before_action :set_equipment_model_if_possible, only: [:index, :new]
 
   include ActivationHelper
+  include Calendarable
 
   # ---------- before filter methods ---------- #
 
@@ -109,5 +110,19 @@ class EquipmentItemsController < ApplicationController
     params.require(:equipment_item)
       .permit(:name, :serial, :deleted_at, :equipment_model_id,
               :deactivation_reason, :notes)
+  end
+
+  def generate_calendar_reservations
+    # for the moment, find reservations from the year beginning 6 months ago
+    start = Time.zone.today - 6.months
+    finish = Time.zone.today + 6.months
+
+    @equipment_item.reservations.finalized
+      .where('start_date <= ? and due_date >= ?', finish, start)
+      # .reserved_in_date_range(start, finish)
+  end
+
+  def generate_calendar_resource
+    @equipment_item
   end
 end

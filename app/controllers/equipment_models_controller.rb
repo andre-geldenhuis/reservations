@@ -9,8 +9,8 @@ class EquipmentModelsController < ApplicationController
                 only: [:show, :edit, :update, :destroy, :deactivate]
   before_action :set_category_if_possible, only: [:index, :new]
 
-  include Calendarable
   include ActivationHelper
+  include Calendarable
 
   # --------- before filter methods --------- #
   def set_equipment_model
@@ -192,7 +192,8 @@ class EquipmentModelsController < ApplicationController
     finish = Time.zone.today + 6.months
 
     Reservation.for_eq_model(@equipment_model)
-      .reserved_in_date_range(start, finish)
+      .where('start_date <= ? and due_date >= ?', finish, start).finalized
+      # .reserved_in_date_range(start, finish)
   end
 
   def generate_calendar_resource
