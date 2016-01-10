@@ -21,11 +21,11 @@ module Calendarable
   private
 
   def generate_calendar_reservations
-    fail MethodNotImplemented
+    fail NotImplementedError
   end
 
   def generate_calendar_resource
-    fail MethodNotImplemented
+    fail NotImplementedError
   end
 
   def generate_source_path
