@@ -18,6 +18,7 @@
 ### Changed
 * Refactored and improved the md_link method for resources and standardized its usage in notes / logs ([#1382](https://github.com/YaleSTC/reservations/issues/1382)).
 * Improved ability.rb for clarity and to avoid redundancy ([#1391](https://github.com/YaleSTC/reservations/issues/1391)).
+* Reordered sections on current reservations page ([#1414](https://github.com/YaleSTC/reservations/issues/1414)).
 
 ### Added
 * Made archived reservations accessible through the reservations index page ([#1383](https://github.com/YaleSTC/reservations/issues/1383)).
