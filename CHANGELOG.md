@@ -3,6 +3,9 @@
 * Any problems should be reported via the "report an issue" link in the footer of the application.
 
 ## v6.0.0 - 2016-02-01
+### Important
+*This release includes an upgrade to Ruby 2.2.3 and Rails 4.2.5 along with updates to many other dependencies.*
+
 ### Fixed
 * Fixed the alignment of the reset TOS checkbox on the Settings page ([#1266](https://github.com/YaleSTC/reservations/issues/1266)).
 * Fixed issue where most users couldn't hide announcements ([#1339](https://github.com/YaleSTC/reservations/issues/1339)).
@@ -17,6 +20,7 @@
 
 ### Changed
 * Refactored and improved Reservation queries using Query Objects ([#1288](https://github.com/YaleSTC/reservations/issues/1288)).
+* Updated all dependencies, including Ruby and Rails ([#1329](https://github.com/YaleSTC/reservations/issues/1329)).
 * Refactored and improved the md_link method for resources and standardized its usage in notes / logs ([#1382](https://github.com/YaleSTC/reservations/issues/1382)).
 * Improved ability.rb for clarity and to avoid redundancy ([#1391](https://github.com/YaleSTC/reservations/issues/1391)).
 * Reordered sections on current reservations page ([#1414](https://github.com/YaleSTC/reservations/issues/1414)).
