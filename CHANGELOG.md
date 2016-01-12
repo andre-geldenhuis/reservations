@@ -16,6 +16,7 @@
 * Removed extra padding from navbar due to #1377 ([#1403](https://github.com/YaleSTC/reservations/issues/1403)).
 
 ### Changed
+* Refactored and improved Reservation queries using Query Objects ([#1288](https://github.com/YaleSTC/reservations/issues/1288)).
 * Refactored and improved the md_link method for resources and standardized its usage in notes / logs ([#1382](https://github.com/YaleSTC/reservations/issues/1382)).
 * Improved ability.rb for clarity and to avoid redundancy ([#1391](https://github.com/YaleSTC/reservations/issues/1391)).
 * Reordered sections on current reservations page ([#1414](https://github.com/YaleSTC/reservations/issues/1414)).
