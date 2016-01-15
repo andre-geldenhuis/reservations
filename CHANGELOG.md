@@ -2,6 +2,11 @@
 * This file will be updated whenever a new release is put into production.
 * Any problems should be reported via the "report an issue" link in the footer of the application.
 
+## v5.5.2 - 2016-01-26
+### Fixed
+*
+
+
 ## v5.5.1 - 2016-01-12
 ### Fixed
 * Fixed issue where most users couldn't hide announcements ([#1339](https://github.com/YaleSTC/reservations/issues/1339)).
