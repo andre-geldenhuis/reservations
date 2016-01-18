@@ -60,7 +60,6 @@
   },
   "addons": [
     "heroku-postgresql",
-    "mandrill",
     "scheduler:standard"
   ]
 }
